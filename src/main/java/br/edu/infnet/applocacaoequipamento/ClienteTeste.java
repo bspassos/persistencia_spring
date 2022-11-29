@@ -26,15 +26,24 @@ public class ClienteTeste implements ApplicationRunner {
 
         try{
             Cliente c1 = new Cliente("Bruno", "11111111111", "bruno@teste.com");
-            clienteService.incluir(c1);
+            clienteService.salvar(c1);
             System.out.println("Cliente " + c1.getNome() + " cadastrado");
         } catch (Exception e) {
             System.out.println("[ERROR - CLIENTE] " + e.getMessage());
         }
 
         try{
-            Optional<Cliente> cliente = clienteService.obter(1);
-            System.out.println(cliente);
+            Optional<Cliente> clienteOptional = clienteService.obter(1);
+            System.out.println(clienteOptional);
+
+            if(clienteOptional.isPresent()){
+                Cliente currentCliente = clienteOptional.get();
+                currentCliente.setNome("Bruno Passos");
+                clienteService.salvar(currentCliente);
+                System.out.println("Cliente " + currentCliente.getNome() + " atualizado");
+            }
+
+
         } catch (Exception e) {
             System.out.println("[ERROR - CLIENTE] " + e.getMessage());
         }

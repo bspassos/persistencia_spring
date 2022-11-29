@@ -1,6 +1,6 @@
 package br.edu.infnet.applocacaoequipamento;
 
-import br.edu.infnet.applocacaoequipamento.model.domain.Desktop;
+import br.edu.infnet.applocacaoequipamento.model.domain.Cliente;
 import br.edu.infnet.applocacaoequipamento.model.domain.Desktop;
 import br.edu.infnet.applocacaoequipamento.model.service.DesktopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +26,28 @@ public class DesktopTeste implements ApplicationRunner {
         try {
             Desktop d1 = new Desktop();
             d1.setCodigo(3);
-            d1.setNome("Desktop Dell XPS 8950");;
+            d1.setNome("Desktop Dell");;
             d1.setMensalidade(480);;
             d1.setProcessador("Core i7 12th");;
             d1.setMemoria(4);
             d1.setHd("1TB");
-            desktopService.incluir(d1);
+            desktopService.salvar(d1);
             System.out.println("Desktop " + d1.getNome() + " cadastrado");
         } catch (Exception e) {
             System.out.println("[ERROR - DESKTOP] " + e.getMessage());
         }
 
         try{
-            Optional<Desktop> desktop = desktopService.obter(1);
-            System.out.println(desktop);
+            Optional<Desktop> desktopOptional = desktopService.obter(1);
+            System.out.println(desktopOptional);
+
+            if(desktopOptional.isPresent()){
+                Desktop currentDesktop = desktopOptional.get();
+                currentDesktop.setNome("Desktop Dell XPS 8950");
+                desktopService.salvar(currentDesktop);
+                System.out.println("Desktop " + currentDesktop.getNome() + " atualizado");
+            }
+
         } catch (Exception e) {
             System.out.println("[ERROR - DESKTOP] " + e.getMessage());
         }

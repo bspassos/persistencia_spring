@@ -1,6 +1,5 @@
 package br.edu.infnet.applocacaoequipamento.model.service;
 
-import br.edu.infnet.applocacaoequipamento.model.domain.Cliente;
 import br.edu.infnet.applocacaoequipamento.model.domain.Monitor;
 import br.edu.infnet.applocacaoequipamento.model.repository.MonitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class MonitorService {
     @Autowired
     private MonitorRepository monitorRepository;
 
-    public void incluir(Monitor monitor){
+    public void salvar(Monitor monitor){
 
         monitorRepository.save(monitor);
     }

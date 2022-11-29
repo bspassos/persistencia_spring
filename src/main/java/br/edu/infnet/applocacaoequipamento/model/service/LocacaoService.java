@@ -1,6 +1,5 @@
 package br.edu.infnet.applocacaoequipamento.model.service;
 
-import br.edu.infnet.applocacaoequipamento.model.domain.Cliente;
 import br.edu.infnet.applocacaoequipamento.model.domain.Locacao;
 import br.edu.infnet.applocacaoequipamento.model.repository.LocacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class LocacaoService {
     @Autowired
     private LocacaoRepository locacaoRepository;
 
-    public void incluir(Locacao locacao){
+    public void salvar(Locacao locacao){
         locacaoRepository.save(locacao);
     }
 

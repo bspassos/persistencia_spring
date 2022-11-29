@@ -14,7 +14,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public void incluir(Cliente cliente){
+    public void salvar(Cliente cliente){
         clienteRepository.save(cliente);
     }
 

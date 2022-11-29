@@ -1,6 +1,5 @@
 package br.edu.infnet.applocacaoequipamento.model.service;
 
-import br.edu.infnet.applocacaoequipamento.model.domain.Cliente;
 import br.edu.infnet.applocacaoequipamento.model.domain.Desktop;
 import br.edu.infnet.applocacaoequipamento.model.repository.DesktopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class DesktopService {
     @Autowired
     private DesktopRepository desktopRepository;
 
-    public void incluir(Desktop desktop){
+    public void salvar(Desktop desktop){
         desktopRepository.save(desktop);
     }
 

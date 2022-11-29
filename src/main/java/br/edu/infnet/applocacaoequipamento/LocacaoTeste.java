@@ -49,7 +49,7 @@ public class LocacaoTeste implements ApplicationRunner {
             locacao.setMeses(3);
             locacao.setCliente(cliente);
             locacao.setEquipamentos(equipamentos);
-            locacaoService.incluir(locacao);
+            locacaoService.salvar(locacao);
             System.out.println("Locacao " + locacao.getDescricao() + " cadastrada");
         } catch (Exception e) {
             System.out.println("[ERROR - LOCACAO] " + e.getMessage());

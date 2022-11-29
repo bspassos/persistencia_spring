@@ -1,6 +1,6 @@
 package br.edu.infnet.applocacaoequipamento;
 
-import br.edu.infnet.applocacaoequipamento.model.domain.Desktop;
+import br.edu.infnet.applocacaoequipamento.model.domain.Impressora;
 import br.edu.infnet.applocacaoequipamento.model.domain.Monitor;
 import br.edu.infnet.applocacaoequipamento.model.service.MonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,20 +27,28 @@ public class MonitorTeste implements ApplicationRunner {
         try{
             Monitor m1 = new Monitor();
             m1.setCodigo(9);
-            m1.setNome("Monitor 23\" Dell P2319H");
+            m1.setNome("Monitor 23");
             m1.setMensalidade(250);
             m1.setTela(12);
             m1.setResolucao("1920x1080");
             m1.setPortas("DisplayPort, VGA e HDMI");
-            monitorService.incluir(m1);
+            monitorService.salvar(m1);
             System.out.println("Monitor " + m1.getNome() + " cadastrado");
         } catch (Exception e) {
             System.out.println("[ERROR - MONITOR] " + e.getMessage());
         }
 
         try{
-            Optional<Monitor> monitor = monitorService.obter(2);
-            System.out.println(monitor);
+            Optional<Monitor> monitorOptional = monitorService.obter(2);
+            System.out.println(monitorOptional);
+
+            if(monitorOptional.isPresent()){
+                Monitor currentMonitor = monitorOptional.get();
+                currentMonitor.setNome("Monitor 23\" Dell P2319H");
+                monitorService.salvar(currentMonitor);
+                System.out.println("Monitor " + currentMonitor.getNome() + " atualizado");
+            }
+
         } catch (Exception e) {
             System.out.println("[ERROR - MONITOR] " + e.getMessage());
         }

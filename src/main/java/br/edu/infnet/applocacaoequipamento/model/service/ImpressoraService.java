@@ -1,6 +1,5 @@
 package br.edu.infnet.applocacaoequipamento.model.service;
 
-import br.edu.infnet.applocacaoequipamento.model.domain.Cliente;
 import br.edu.infnet.applocacaoequipamento.model.domain.Impressora;
 import br.edu.infnet.applocacaoequipamento.model.repository.ImpressoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class ImpressoraService {
     @Autowired
     private ImpressoraRepository impressoraRepository;
 
-    public void incluir(Impressora impressora){
+    public void salvar(Impressora impressora){
         impressoraRepository.save(impressora);
     }
 
