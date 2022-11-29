@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -19,6 +20,10 @@ public class ClienteService {
 
     public Collection<Cliente> obterLista(){
         return (Collection<Cliente>) clienteRepository.findAll();
+    }
+
+    public Optional<Cliente> obter(Integer id){
+        return clienteRepository.findById(id);
     }
 
     public void excluir(Integer id){

@@ -17,7 +17,7 @@ public class Locacao {
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idCliente")
     private Cliente cliente;
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Set<Equipamento> equipamentos;
 
     public Locacao(Cliente cliente, Set<Equipamento> equipamentos) {
@@ -82,12 +82,12 @@ public class Locacao {
 
     @Override
     public String toString() {
-        System.out.println(descricao);
-        System.out.println(data);
-        System.out.println(meses);
         System.out.println(cliente);
-        System.out.println(equipamentos);
-        return descricao + ";" + data + ";" + meses + ";" + cliente + ";" + equipamentos.size();
+        System.out.println(equipamentos.size() + " equipamentos");
+        for (Equipamento equipamento : equipamentos) {
+            System.out.println(equipamento.toString());
+        }
+        return descricao + ";" + data + ";" + meses;
     }
 
 }

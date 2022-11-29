@@ -29,7 +29,7 @@ public abstract class Equipamento {
 
     @Override
     public String toString() {
-        return nome + ";" + mensalidade + ";" + codigo;
+        return id + ";" + nome + ";" + mensalidade + ";" + codigo;
     }
 
     public String getNome() {
