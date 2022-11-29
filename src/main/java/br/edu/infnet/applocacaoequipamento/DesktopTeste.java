@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Component
@@ -23,6 +24,7 @@ public class DesktopTeste implements ApplicationRunner {
         System.out.println("===================================================");
         System.out.println("######desktop");
 
+        //inserir
         try {
             Desktop d1 = new Desktop();
             d1.setCodigo(3);
@@ -37,6 +39,7 @@ public class DesktopTeste implements ApplicationRunner {
             System.out.println("[ERROR - DESKTOP] " + e.getMessage());
         }
 
+        //ler e alterar
         try{
             Optional<Desktop> desktopOptional = desktopService.obter(1);
             System.out.println(desktopOptional);
@@ -46,6 +49,19 @@ public class DesktopTeste implements ApplicationRunner {
                 currentDesktop.setNome("Desktop Dell XPS 8950");
                 desktopService.salvar(currentDesktop);
                 System.out.println("Desktop " + currentDesktop.getNome() + " atualizado");
+            }
+
+        } catch (Exception e) {
+            System.out.println("[ERROR - DESKTOP] " + e.getMessage());
+        }
+
+        //listar todos
+        System.out.println("************listar desktops************");
+        try{
+            Collection<Desktop> desktops = desktopService.obterLista();
+
+            for(Desktop desktop : desktops){
+                System.out.println(desktop);
             }
 
         } catch (Exception e) {

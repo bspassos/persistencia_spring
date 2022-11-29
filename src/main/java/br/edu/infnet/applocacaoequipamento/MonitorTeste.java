@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Optional;
 
 
@@ -24,6 +25,7 @@ public class MonitorTeste implements ApplicationRunner {
         System.out.println("===================================================");
         System.out.println("######monitor");
 
+        //inserir
         try{
             Monitor m1 = new Monitor();
             m1.setCodigo(9);
@@ -38,6 +40,7 @@ public class MonitorTeste implements ApplicationRunner {
             System.out.println("[ERROR - MONITOR] " + e.getMessage());
         }
 
+        //ler e alterar
         try{
             Optional<Monitor> monitorOptional = monitorService.obter(2);
             System.out.println(monitorOptional);
@@ -47,6 +50,19 @@ public class MonitorTeste implements ApplicationRunner {
                 currentMonitor.setNome("Monitor 23\" Dell P2319H");
                 monitorService.salvar(currentMonitor);
                 System.out.println("Monitor " + currentMonitor.getNome() + " atualizado");
+            }
+
+        } catch (Exception e) {
+            System.out.println("[ERROR - MONITOR] " + e.getMessage());
+        }
+
+        //listar todos
+        System.out.println("************listar monitors************");
+        try{
+            Collection<Monitor> monitors = monitorService.obterLista();
+
+            for(Monitor monitor : monitors){
+                System.out.println(monitor);
             }
 
         } catch (Exception e) {

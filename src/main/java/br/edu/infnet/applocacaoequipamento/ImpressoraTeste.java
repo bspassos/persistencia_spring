@@ -1,5 +1,6 @@
 package br.edu.infnet.applocacaoequipamento;
 
+import br.edu.infnet.applocacaoequipamento.model.domain.Cliente;
 import br.edu.infnet.applocacaoequipamento.model.domain.Desktop;
 import br.edu.infnet.applocacaoequipamento.model.domain.Impressora;
 import br.edu.infnet.applocacaoequipamento.model.service.ImpressoraService;
@@ -9,6 +10,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Component
@@ -23,6 +25,7 @@ public class ImpressoraTeste implements ApplicationRunner {
         System.out.println("===================================================");
         System.out.println("######impressora");
 
+        //inserir
         try {
             Impressora i1 = new Impressora();
             i1.setCodigo(6);
@@ -37,6 +40,7 @@ public class ImpressoraTeste implements ApplicationRunner {
             System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
         }
 
+        //ler e alterar
         try{
             Optional<Impressora> impressoraOptional = impressoraService.obter(3);
             System.out.println(impressoraOptional);
@@ -46,6 +50,19 @@ public class ImpressoraTeste implements ApplicationRunner {
                 currentImpressora.setNome("Impressora Laser Monocromática, Xerox, B210, 30 PPM, A4");
                 impressoraService.salvar(currentImpressora);
                 System.out.println("Impressora " + currentImpressora.getNome() + " atualizado");
+            }
+
+        } catch (Exception e) {
+            System.out.println("[ERROR - IMPRESSORA] " + e.getMessage());
+        }
+
+        //listar todos
+        System.out.println("************listar impressoras************");
+        try{
+            Collection<Impressora> impressoras = impressoraService.obterLista();
+
+            for(Impressora impressora : impressoras){
+                System.out.println(impressora);
             }
 
         } catch (Exception e) {
