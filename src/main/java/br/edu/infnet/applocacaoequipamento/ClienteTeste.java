@@ -72,6 +72,22 @@ public class ClienteTeste implements ApplicationRunner {
             System.out.println("[ERROR - CLIENTE] " + e.getMessage());
         }
 
+        //deletar
+        System.out.println("************deletar cliente************");
+        try{
+
+            Optional<Cliente> clienteOptional = clienteService.obter(2);
+            System.out.println(clienteOptional);
+
+            if(clienteOptional.isPresent()){
+                Cliente currentCliente = clienteOptional.get();
+                clienteService.excluir(currentCliente.getId());
+            }
+
+        } catch (Exception e) {
+            System.out.println("[ERROR - CLIENTE] " + e.getMessage());
+        }
+
         System.out.println("===================================================");
 
     }
